@@ -30,10 +30,8 @@ def get_data(file_path):
     # total.to_excel(os.path.join(file_path, "media_data.xlsx"), index=False)
 
 def process_post(post):
-    vocab = {}
-    seg_list = jieba.cut(post, cut_all=False)
+    pass
     
-
 if __name__ == "__main__":
     data = get_data(media_data_path)
     for date, post in tqdm(data.items()):
