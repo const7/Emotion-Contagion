@@ -3,14 +3,13 @@
 
 from copy import deepcopy
 
-
 try:
     import psyco
     psyco.full()
 except:
     pass
 
-from weibo_preprocess_toolkit.lib.zh_wiki import zh2Hant, zh2Hans
+from zh_wiki import zh2Hant, zh2Hans
 
 import sys
 py3k = sys.version_info >= (3, 0, 0)

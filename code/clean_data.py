@@ -12,9 +12,9 @@ import codecs
 import pkg_resources
 
 import jieba
-from lib.langconv import Converter
+from langconv import Converter
 
-sys.path.append("../")
+# sys.path.append("../")
 
 class WeiboPreprocess:
 
@@ -39,7 +39,6 @@ class WeiboPreprocess:
         self.stop_words_regex2 = "|".join(stop_words_regex_after_special_chars)
         # load stop words
         self.stop_words = self.__load_stop_words()
-        pass
 
     def __load_weibo_stop_word(self, should_before_special_chars):
         """
@@ -48,9 +47,9 @@ class WeiboPreprocess:
         :return:
         """
         if should_before_special_chars:
-            path = "dictionary/weibo_stopwords1_regex.csv"
+            path = "../data/dictionary/weibo_stopwords1_regex.csv"
         else:
-            path = "dictionary/weibo_stopwords2_regex.csv"
+            path = "../data/dictionary/weibo_stopwords2_regex.csv"
         utf8_reader = codecs.getreader("utf-8")
         with pkg_resources.resource_stream(__name__, os.path.join(path)) as fr:
             result = csv.reader(utf8_reader(fr), delimiter=',')
@@ -62,7 +61,7 @@ class WeiboPreprocess:
         load stop words
         :return:
         """
-        path = "dictionary/stop_words.txt"
+        path = "../data/dictionary/stop_words.txt"
         with pkg_resources.resource_stream(__name__, os.path.join(path)) as fr:
             stop_words = [word.decode("utf-8").strip() for word in fr if word.strip()]
         stop_words = set(stop_words)
@@ -73,7 +72,7 @@ class WeiboPreprocess:
         load special char
         :return:
         """
-        path = "dictionary/special_chars.csv"
+        path = "../data/dictionary/special_chars.csv"
         utf8_reader = codecs.getreader("utf-8")
         with pkg_resources.resource_stream(__name__, os.path.join(path)) as fr:
             result = csv.reader(utf8_reader(fr))
@@ -85,7 +84,7 @@ class WeiboPreprocess:
         init jieba seg tool
         :return:
         """
-        path = "dictionary/jieba_expanded_dict.txt"
+        path = "../data/dictionary/jieba_expanded_dict.txt"
         jieba.load_userdict(pkg_resources.resource_stream(__name__, os.path.join(path)))
 
     def cut(self, weibo, keep_stop_word=True):
