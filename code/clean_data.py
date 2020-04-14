@@ -12,22 +12,18 @@ import codecs
 import pkg_resources
 
 import jieba
-from langconv import Converter
+from snownlp import SnowNLP
 
-# sys.path.append("../")
-
-class WeiboPreprocess:
+class WeiboPreprocess():
 
     __newline_space_regex = r'(\n)+|( )+'
-    __num_regex = "\d+"
+    __num_regex = r"\d+"
 
     def __init__(self):
         """
         init lib and load dictionary
         """
         self.__init_jieba()
-        # load lib for coverting traditional chinese to simplified chinese
-        self.tradition2simplified_converter = Converter("zh-hans")
         # load weibo stop word
         stop_words_regex_before_special_chars = self.__load_weibo_stop_word(should_before_special_chars=True)
         self.stop_words_regex1 = "|".join(stop_words_regex_before_special_chars)
@@ -115,15 +111,6 @@ class WeiboPreprocess:
             reconstructed_seged_words = [word for word in reconstructed_seged_words if word not in self.stop_words]
         return reconstructed_seged_words
 
-    def traditional2simplified(self, weibo):
-        """
-        traditional Chinese to simplified Chinese
-        :param weibo:
-        :return:
-        """
-        return self.tradition2simplified_converter.convert(weibo)
-
-
     def clean(self, weibo, simplified=True):
         """
         weibo clean
@@ -133,7 +120,7 @@ class WeiboPreprocess:
         """
         weibo = weibo.lower().strip()
         if simplified:
-            weibo = self.traditional2simplified(weibo)
+            weibo = SnowNLP(weibo).han
         weibo = re.sub(self.stop_words_regex1, ' ', weibo)
         weibo = re.sub(self.special_chars_regex, ' ', weibo)
         weibo = re.sub(self.stop_words_regex2, ' ', weibo)

@@ -1,4 +1,9 @@
 __pycache__
-papers
 .ipynb_checkpoints
-data/*_data
+
+# personal file
+data/media_data
+data/user_data
+*.png
+papers
+*.doc*
