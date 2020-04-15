@@ -126,7 +126,7 @@ class WeiboPreprocess():
         weibo = re.sub(self.stop_words_regex2, ' ', weibo)
         weibo = re.sub(self.__num_regex, ' ', weibo)
         weibo = re.sub(self.__newline_space_regex, ' ', weibo)
-        return weibo
+        return weibo.strip()
 
     def preprocess(self, weibo, simplified=True, keep_stop_word=True):
         """
