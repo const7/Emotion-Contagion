@@ -2,8 +2,7 @@ __pycache__
 .ipynb_checkpoints
 
 # personal file
-data/media_data
-data/user_data
+data/*_data
 *.png
 papers
 *.doc*
