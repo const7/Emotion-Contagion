@@ -7,7 +7,7 @@ from clean_data import WeiboPreprocess
 
 neg_corpus_file_path = "../data/snownlp_data/neg.txt"
 pos_corpus_file_path = "../data/snownlp_data/pos.txt"
-model_save_to = "../data/snownlp_data/sentiment.marshal"
+model_save_to = "C:/Users/const/Miniconda3/Lib/site-packages/snownlp/sentiment/sentiment.marshal"
 
 # get corpus from raw weibo data
 def make_corpus(rawdata_path="../data/snownlp_data/weibo_senti_100k.csv"):
@@ -32,8 +32,8 @@ def make_corpus(rawdata_path="../data/snownlp_data/weibo_senti_100k.csv"):
 
 # train snownlp model based on weibo data
 def train_weibo_sentiment_model():
-    if os.path.exists(model_save_to):
-        os.remove(model_save_to)
+    # if os.path.exists(model_save_to):
+    #     os.remove(model_save_to)
     sentiment.train(neg_corpus_file_path, pos_corpus_file_path)
     sentiment.save(model_save_to)
 

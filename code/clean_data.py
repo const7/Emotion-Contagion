@@ -57,7 +57,7 @@ class WeiboPreprocess():
         load stop words
         :return:
         """
-        path = "../data/dictionary/stop_words.txt"
+        path = "../data/dictionary/stopwords.txt"
         with pkg_resources.resource_stream(__name__, os.path.join(path)) as fr:
             stop_words = [word.decode("utf-8").strip() for word in fr if word.strip()]
         stop_words = set(stop_words)
